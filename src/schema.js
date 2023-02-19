@@ -19,7 +19,6 @@ export const resolvers = {
     Query: {
         rooms: async () => {
             console.log("rooms");
-            const rooms = await client.room.findMany();
             return "rooms";
         },
         room: async (_, { name }) => {
