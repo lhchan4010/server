@@ -26,6 +26,7 @@ export const resolvers = {
     },
     Mutation: {
         createRoom: async (_, { name }) => {
+            console.log(name);
             const room = await client.room.create({
                 data: { name },
             });
