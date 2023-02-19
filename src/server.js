@@ -20,6 +20,7 @@ const server = new ApolloServer({
               })
             : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
     ],
+    introspection: true,
 });
 
 const startServer = async () => {
