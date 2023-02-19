@@ -16,3 +16,7 @@
         -   npx prisma init -y [x]
         -   connect DB [x]
         -   npx prisma migrate dev[x]
+-   deploy
+    -   npm install --save-dev @babel/core @babel/cli [x]
+    -   script "build": "babel src --out-dir build ", "start" : "node build/server" [x]
+    -

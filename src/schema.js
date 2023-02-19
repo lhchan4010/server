@@ -1,7 +1,6 @@
-import { gql } from "apollo-server";
 import { client } from "./server";
 
-export const typeDefs = gql`
+export const typeDefs = `
     type Room {
         id: String!
         name: String!
