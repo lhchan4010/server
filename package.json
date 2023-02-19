@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server delay1",
+    "migrate": "npx prisma migrate dev",
+    "studio": "npx prisma studio",
+    "build": "babel src --out-dir build "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.4.0",
+    "@babel/register": "^7.18.9",
+    "@prisma/client": "^4.10.1",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "apollo-server": "^3.11.1",
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20",
+    "prisma": "^4.10.1"
+  }
+}
