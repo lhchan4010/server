@@ -17,7 +17,11 @@ export const typeDefs = `
 
 export const resolvers = {
     Query: {
-        rooms: () => client.room.findMany(),
+        rooms: async () => {
+            console.log("rooms");
+            const rooms = await client.room.findMany();
+            return rooms;
+        },
         room: async (_, { name }) => {
             const room = await client.room.findUnique({ where: { name } });
             return room;
