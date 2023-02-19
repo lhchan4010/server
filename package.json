@@ -5,7 +5,8 @@
     "dev": "nodemon --exec babel-node src/server delay1",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio",
-    "build": "babel src --out-dir build "
+    "build": "babel src --out-dir build ",
+    "start": "node build/server"
   },
   "keywords": [],
   "author": "",
