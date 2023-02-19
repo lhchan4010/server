@@ -6,7 +6,7 @@ export const typeDefs = `
         name: String!
     }
     type Query {
-        rooms: [Room]!
+        rooms: String
         room(name: String!): Room!
         hello: String
     }
@@ -20,7 +20,7 @@ export const resolvers = {
         rooms: async () => {
             console.log("rooms");
             const rooms = await client.room.findMany();
-            return rooms;
+            return "rooms";
         },
         room: async (_, { name }) => {
             const room = await client.room.findUnique({ where: { name } });
