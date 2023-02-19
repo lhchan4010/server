@@ -22,11 +22,13 @@ export const resolvers = {
             const room = await client.room.findUnique({ where: { name } });
             return room;
         },
-        hello: () => "world",
+        hello: () => {
+            console.log("hello");
+            return "hello";
+        },
     },
     Mutation: {
         createRoom: async (_, { name }) => {
-            console.log(name);
             const room = await client.room.create({
                 data: { name },
             });
