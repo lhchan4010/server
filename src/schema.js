@@ -8,6 +8,7 @@ export const typeDefs = `
     type Query {
         rooms: [Room]!
         room(name: String!): Room!
+        hello: String
     }
     type Mutation {
         createRoom(name: String!): Boolean!
@@ -21,6 +22,7 @@ export const resolvers = {
             const room = await client.room.findUnique({ where: { name } });
             return room;
         },
+        hello: () => "world",
     },
     Mutation: {
         createRoom: async (_, { name }) => {
