@@ -17,7 +17,7 @@ export const typeDefs = `
 
 export const resolvers = {
     Query: {
-        rooms: async () => {
+        rooms: () => {
             console.log("rooms");
             return "rooms";
         },
