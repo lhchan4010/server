@@ -6,8 +6,10 @@ export const typeDefs = `
         name: String!
     }
     type Query {
+        rooms: [Room]!
         room(name: String!): Room!
-        hello: [Room]!
+        hello: String
+        hi: String
     }
     type Mutation {
         createRoom(name: String!): Boolean!
@@ -16,14 +18,18 @@ export const typeDefs = `
 
 export const resolvers = {
     Query: {
+        rooms: async () => {
+            console.log("rooms");
+            const rooms = await client.room.findMany();
+            return rooms;
+        },
         room: async (_, { name }) => {
             const room = await client.room.findUnique({ where: { name } });
             return room;
         },
-        hello: async () => {
-            console.log("rooms");
-            const rooms = await client.room.findMany();
-            return rooms;
+        hello: () => {
+            console.log("hello");
+            return "hi";
         },
     },
     Mutation: {
