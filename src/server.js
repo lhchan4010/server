@@ -1,13 +1,11 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { PrismaClient } from "@prisma/client";
-import { typeDefs, resolvers } from "./schema";
+import { schema } from "./schema";
+
 const PORT = process.env.PORT;
-export const client = new PrismaClient();
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
 });
 
 const startServer = async () => {

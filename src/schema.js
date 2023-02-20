@@ -1,43 +1,10 @@
-import { client } from "./server";
+import { loadFilesSync } from "@graphql-tools/load-files";
+import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
-export const typeDefs = `
-    type Room {
-        id: String!
-        name: String!
-    }
-    type Query {
-        rooms: [Room]!
-        room(name: String!): Room!
-        hello: String
-        hi: String
-    }
-    type Mutation {
-        createRoom(name: String!): Boolean!
-    }
-`;
+const typesArray = loadFilesSync(`${__dirname}/**/*.typeDefs.js`);
+const resolversArray = loadFilesSync(`${__dirname}/**/*.resolvers.js`);
+const typeDefs = mergeTypeDefs(typesArray);
+const resolvers = mergeResolvers(resolversArray);
 
-export const resolvers = {
-    Query: {
-        rooms: async () => {
-            console.log("rooms");
-            const rooms = await client.room.findMany();
-            return rooms;
-        },
-        room: async (_, { name }) => {
-            const room = await client.room.findUnique({ where: { name } });
-            return room;
-        },
-        hello: () => {
-            console.log("hello");
-            return "hi";
-        },
-    },
-    Mutation: {
-        createRoom: async (_, { name }) => {
-            const room = await client.room.create({
-                data: { name },
-            });
-            return Boolean(room);
-        },
-    },
-};
+export const schema = makeExecutableSchema({ typeDefs, resolvers });
