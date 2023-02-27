@@ -6,6 +6,7 @@ const PORT = process.env.PORT;
 
 const server = new ApolloServer({
     schema,
+    introspection: true,
 });
 
 const startServer = async () => {
