@@ -1,9 +1,11 @@
-import { graphql } from "graphql";
-
 export default `#graphql
     type Room {
-        id: String!
+        id: Int!
         name: String!
+        floor: Int!
+        isUsed: Boolean!
+        isClean: Boolean!
+        user: User
     }
     type Query {
         rooms: [Room]!
