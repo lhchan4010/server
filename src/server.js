@@ -6,7 +6,14 @@ const PORT = process.env.PORT;
 
 const server = new ApolloServer({
     schema,
-    introspection: true,
+    plugins: [
+        process.env.NODE_ENV === "production"
+            ? ApolloServerPluginLandingPageProductionDefault({
+                  graphRef: "my-graph-id@my-graph-variant",
+                  footer: false,
+              })
+            : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+    ],
 });
 
 const startServer = async () => {
