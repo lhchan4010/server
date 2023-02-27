@@ -1,5 +1,9 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import {
+    ApolloServerPluginLandingPageLocalDefault,
+    ApolloServerPluginLandingPageProductionDefault,
+} from "apollo-server-core";
 import { schema } from "./schema";
 
 const PORT = process.env.PORT;
