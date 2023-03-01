@@ -5,6 +5,8 @@ import {
     ApolloServerPluginLandingPageProductionDefault,
 } from "@apollo/server/plugin/landingPage/default";
 import { schema } from "./schema";
+import jwt from "jsonwebtoken";
+import { getUser } from "./user/users.utills";
 
 const PORT = process.env.PORT;
 
@@ -25,6 +27,10 @@ const startServer = async () => {
     const { url } = await startStandaloneServer(server, {
         listen: { port: PORT },
         context: async ({ req }) => {
+            const token = req.headers.token;
+            if (token === "null") {
+                return { loggedInUser: null };
+            }
             return {
                 loggedInUser: await getUser(req.headers.token),
             };
