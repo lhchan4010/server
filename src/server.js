@@ -24,6 +24,11 @@ const server = new ApolloServer({
 const startServer = async () => {
     const { url } = await startStandaloneServer(server, {
         listen: { port: PORT },
+        context: async ({ req }) => {
+            return {
+                loggedInUser: await getUser(req.headers.token),
+            };
+        },
     });
     return console.log(`🚀 Server ready at ${url}`);
 };
